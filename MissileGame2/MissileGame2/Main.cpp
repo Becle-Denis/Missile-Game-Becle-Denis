@@ -91,7 +91,7 @@ Missile createMissile()
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 	std::cout << "ENTER LAUNCH CODE : ";
 	std::cin >> userCode;
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(1200));
 	if (userCode == launchCode)
 	{
 		for (int i = 5; i >= 1; i--)
@@ -125,7 +125,7 @@ int fireMissile(Enemy enemy[], bool alive[])
 		{
 			if (missile.armed && alive[i])
 			{
-				if (missile.payload == WarHead::NUCLEAR && enemy[i].coordinates.x >= missile.coordiantes.x - 1 && enemy[i].coordinates.x <= missile.coordiantes.x + 1 && enemy[i].coordinates.x >= missile.coordiantes.x - 1 && enemy[i].coordinates.y <= missile.coordiantes.y + 1)
+				if (missile.payload == WarHead::NUCLEAR && enemy[i].coordinates.x >= missile.coordiantes.x - 1 && enemy[i].coordinates.x <= missile.coordiantes.x + 1 && enemy[i].coordinates.y >= missile.coordiantes.y - 1 && enemy[i].coordinates.y <= missile.coordiantes.y + 1)
 				{
 					std::cout << "HIT" << std::endl;
 					index = i;
@@ -240,5 +240,17 @@ int main()
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	play();
+	int result = play();
+	if (result == 0)
+	{
+		std::cout << "---------------------------------------------------------------------" << std::endl;
+		std::cout << "YOU WIN" << std::endl;
+		std::cout << "---------------------------------------------------------------------" << std::endl;
+	}
+	else
+	{
+		std::cout << "---------------------------------------------------------------------" << std::endl;
+		std::cout << "YOU FAIL" << std::endl;
+		std::cout << "---------------------------------------------------------------------" << std::endl;
+	}
 }
