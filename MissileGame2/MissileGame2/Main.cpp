@@ -6,6 +6,9 @@
 #include <thread>
 #include <time.h>
 
+/// <summary>
+/// Position in the battlefield
+/// </summary>
 typedef struct Position
 {
 	int x;
@@ -17,13 +20,22 @@ typedef struct Position
 	}
 }Coordinates;
 
+/// <summary>
+/// Different types of Warhead
+/// </summary>
 enum WarHead { EXPLOSIVE, NUCLEAR };
 
+/// <summary>
+/// Enemy position
+/// </summary>
 typedef struct Enemy
 {
 	Coordinates coordinates;
 }Target;
 
+/// <summary>
+/// Missile, Warheag and position 
+/// </summary>
 struct Missile
 {
 	WarHead payload;
@@ -44,6 +56,11 @@ struct Missile
 	}
 };
 
+/// <summary>
+/// Create a Missile according to the user input 
+/// Display the launch sequence
+/// </summary>
+/// <returns>Missile created by the user input</returns>
 Missile createMissile()
 {
 	Missile missile;
@@ -111,6 +128,13 @@ Missile createMissile()
 	return missile;
 }
 
+
+/// <summary>
+/// Update the missile until it hit an enemy or exit the battlefield 
+/// </summary>
+/// <param name="enemy">Array of the Enemy</param>
+/// <param name="alive">Array of boolean corresponding to the enemy alive</param>
+/// <returns>the index of the hitted enemy, -1 if the missile is out </returns>
 int fireMissile(Enemy enemy[], bool alive[])
 {
 	Missile missile = createMissile();
@@ -151,6 +175,10 @@ int fireMissile(Enemy enemy[], bool alive[])
 	return index;
 }
 
+/// <summary>
+/// Create the enemy and run the game loop
+/// </summary>
+/// <returns>0 is victory, 1 if defeat</returns>
 int play()
 {
 	//variables
@@ -231,6 +259,11 @@ int play()
 	return 1;
 }
 
+/// <summary>
+/// Entry Point
+/// Display title and game result
+/// </summary>
+/// <returns>0</returns>
 int main()
 {
 	system("CLS");
